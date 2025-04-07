@@ -14,7 +14,7 @@ jobs:
       - name: Authenticate with Firebase
         run: |
           echo "${{ secrets.FIREBASE_TOKEN }}" > firebase_token.txt
-          firebase login:ci --token "$(cat firebase_token.txt)"
+          firebase login:ci --token --interactive "$(cat firebase_token.txt)"
           rm firebase_token.txt
       - name: Install Dependencies
         run: npm install
