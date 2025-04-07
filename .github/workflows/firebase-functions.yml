@@ -12,10 +12,7 @@ jobs:
       - name: Install Firebase Tools
         run: npm install -g firebase-tools
       - name: Authenticate with Firebase
-        run: |
-          echo "${{ secrets.FIREBASE_TOKEN }}" > firebase_token.txt
-          firebase login:ci --token --interactive "$(cat firebase_token.txt)"
-          rm firebase_token.txt
+        run: firebase login:ci --no-localhost --token --interactive ${{ secrets.FIREBASE_TOKEN }}
       - name: Install Dependencies
         run: npm install
       - name: Deploy Firebase Functions
